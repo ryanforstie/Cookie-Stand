@@ -1,110 +1,6 @@
 'use strict';
 
-
-// Favorite Seattle beaches
-
-//  var pike = {
-//    name: '1st and Pike',
-//    minCustPerHr: 23,
-//    render: function(){
-//      var alkiUL = document.getElementById('alki');
-//      // This will render the seagull data array to the DOM
-//      // We'll need a 'for' loop to iterate over the array
-//      for(var i = 0; i < this.seagullCount.length; i++){
-//        // There are three parts to this process:
-//        // 1. Create an element
-//        var liEl = document.createElement('li');
-//        // 2. Give it content
-//        liEl.textContent = days[i] + ': ' + this.seagullCount[i];
-//        // 3. Append it to a certain place in the DOM
-//        // parentElement.appendChild(childElement)
-//        alkiUL.appendChild(liEl);
-//      }
-//    }
-//  };
-//
-//  alki.render();
-//
-// var goldenGarden = {
-//   name: 'Golden Garden',
-//   seagullCount: [3,5,4,7,5,9,8],
-//   render: function(){
-//     var golden = document.getElementById('gg');
-//     // This will render the seagull data array to the DOM
-//     // We'll need a 'for' loop to iterate over the array
-//     for(var i = 0; i < this.seagullCount.length; i++){
-//       // There are three parts to this process:
-//       // 1. Create an element
-//       var liEl = document.createElement('li');
-//       // 2. Give it content
-//       liEl.textContent = days[i] + ': ' + this.seagullCount[i];
-//       // 3. Append it to a certain place in the DOM
-//       // parentElement.appendChild(childElement)
-//       golden.appendChild(liEl);
-//     }
-//   }
-// };
-//
-// goldenGarden.render();
-//
-// var edmondsBeach = {
-//   name: 'edmondsBeach',
-//   seagullCount: [52,46,76,87,365,13,38],
-//   render: function(){
-//     var eddie = document.getElementById('edmonds');
-//     // This will render the seagull data array to the DOM
-//     // We'll need a 'for' loop to iterate over the array
-//     for(var i = 0; i < this.seagullCount.length; i++){
-//       // There are three parts to this process:
-//       // 1. Create an element
-//       var liEl = document.createElement('li');
-//       // 2. Give it content
-//       liEl.textContent = days[i] + ': ' + this.seagullCount[i];
-//       // 3. Append it to a certain place in the DOM
-//       // parentElement.appendChild(childElement)
-//       eddie.appendChild(liEl);
-//     }
-//   }
-// };
-//
-// edmondsBeach.render();
-//
-
-
-
-// var pike = {
-//   minCust: 23,
-//   maxCust: 65,
-//   avgCook: 6.3,
-//
-//
-//   randomCookies: function(min, max) {
-//     return Math.floor(Math.random() * ((pike.maxCust - pike.minCust) + 1) * pike.avgCook);
-//   },
-//   randomPeople: function(min, max) {
-//     return Math.floor(Math.random() * (pike.maxCust - pike.minCust) + 1);
-//   }
-// };
-//
-//
-// console.log('average cookies', pike.randomCookies(pike.minCust, pike.maxCust));
-//
-// console.log('average people', pike.randomPeople(pike.minCust, pike.maxCust));
-//
-
-
-// var pike = {
-//   minCustPerHr: 23,
-//   maxCustPerHr: 65,
-// //   avgCookiesPerCust: 6.3,
-//   customersEachHour: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
-// //   cookiesEachHour: [],
-// //   totalCookiesPerDay: 0;
-//   (methods to calculate customer and cookie totals)
-//   (method to calculate customers per hour)
-// }
-
-
+//1st and Pike Store
 var hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 var pike = {
@@ -113,8 +9,9 @@ var pike = {
   maxCustHr: 65,
   avgCookPerCust: 6.3,
   hourlyCook: [],
+
   customersPerHour: function(min, max) {
-    return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr)) + this.minCustHr
+    return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr)) + this.minCustHr;
   },
 
   cookiesPerHour: function() {
@@ -139,12 +36,196 @@ var pike = {
       pikeUl.appendChild(liEl);
     }
     var total = document.getElementById('pike');
-    var liEl = document.createElement('li');
-    liEl.textContent = 'total: ' + this.cookiesPerDay(total);
-    total.appendChild(liEl);
+    var liEL = document.createElement('li');
+    liEL.textContent = 'total: ' + this.cookiesPerDay(total);
+    total.appendChild(liEL);
   }
 };
 
 pike.customersPerHour();
 pike.cookiesPerHour();
 pike.render();
+
+//Seatac Airport Store
+var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+
+var seatac = {
+  name: 'SeaTac Airport',
+  minCustHr: 3,
+  maxCustHr: 24,
+  avgCookPerCust: 1.2,
+  hourlyCook: [],
+
+  customersPerHour: function(min, max) {
+    return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr)) + this.minCustHr;
+  },
+
+  cookiesPerHour: function() {
+    for (var i = 0; i < storeHours.length; i++) {
+      var cookiesPer = Math.floor(this.avgCookPerCust * this.customersPerHour());
+      this.hourlyCook.push(cookiesPer);
+    }
+  },
+
+  cookiesPerDay: function() {
+    var total = 0;
+    for (var i = 0; i < this.hourlyCook.length; i++) {
+      total += this.hourlyCook[i];
+    }
+    return total;
+  },
+  render: function() {
+    var seatacUl = document.getElementById('seatac');
+    for(var i = 0; i < storeHours.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = storeHours[i] + ': ' + this.hourlyCook[i] + ' Cookies per hour';
+      seatacUl.appendChild(liEl);
+    }
+    var total = document.getElementById('seatac');
+    var liEL = document.createElement('li');
+    liEL.textContent = 'total: ' + this.cookiesPerDay(total);
+    total.appendChild(liEL);
+  }
+};
+
+seatac.customersPerHour();
+seatac.cookiesPerHour();
+seatac.render();
+
+//Seattle Center Store
+var hoursStore = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+
+var seattle = {
+  name: 'Seattle Center',
+  minCustHr: 11,
+  maxCustHr: 38,
+  avgCookPerCust: 3.7,
+  hourlyCook: [],
+
+  customersPerHour: function(min, max) {
+    return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr)) + this.minCustHr;
+  },
+
+  cookiesPerHour: function() {
+    for (var i = 0; i < hoursStore.length; i++) {
+      var cookiesPer = Math.floor(this.avgCookPerCust * this.customersPerHour());
+      this.hourlyCook.push(cookiesPer);
+    }
+  },
+
+  cookiesPerDay: function() {
+    var total = 0;
+    for (var i = 0; i < this.hourlyCook.length; i++) {
+      total += this.hourlyCook[i];
+    }
+    return total;
+  },
+  render: function() {
+    var seattleUl = document.getElementById('seattle');
+    for(var i = 0; i < hoursStore.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = hoursStore[i] + ': ' + this.hourlyCook[i] + ' Cookies per hour';
+      seattleUl.appendChild(liEl);
+    }
+    var total = document.getElementById('seattle');
+    var liEL = document.createElement('li');
+    liEL.textContent = 'total: ' + this.cookiesPerDay(total);
+    total.appendChild(liEL);
+  }
+};
+
+seattle.customersPerHour();
+seattle.cookiesPerHour();
+seattle.render();
+
+//Capitol Hill Store
+var hoursOfDay = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+
+var capitol = {
+  name: 'Capitol Hill',
+  minCustHr: 20,
+  maxCustHr: 38,
+  avgCookPerCust: 2.3,
+  hourlyCook: [],
+
+  customersPerHour: function(min, max) {
+    return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr)) + this.minCustHr;
+  },
+
+  cookiesPerHour: function() {
+    for (var i = 0; i < hoursOfDay.length; i++) {
+      var cookiesPer = Math.floor(this.avgCookPerCust * this.customersPerHour());
+      this.hourlyCook.push(cookiesPer);
+    }
+  },
+
+  cookiesPerDay: function() {
+    var total = 0;
+    for (var i = 0; i < this.hourlyCook.length; i++) {
+      total += this.hourlyCook[i];
+    }
+    return total;
+  },
+  render: function() {
+    var capitolUl = document.getElementById('capitol');
+    for(var i = 0; i < hoursOfDay.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = hoursOfDay[i] + ': ' + this.hourlyCook[i] + ' Cookies per hour';
+      capitolUl.appendChild(liEl);
+    }
+    var total = document.getElementById('capitol');
+    var liEL = document.createElement('li');
+    liEL.textContent = 'total: ' + this.cookiesPerDay(total);
+    total.appendChild(liEL);
+  }
+};
+
+capitol.customersPerHour();
+capitol.cookiesPerHour();
+capitol.render();
+
+//Alki Store
+var hoursOfStore = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+
+var alki = {
+  name: 'Alki',
+  minCustHr: 2,
+  maxCustHr: 16,
+  avgCookPerCust: 4.6,
+  hourlyCook: [],
+
+  customersPerHour: function(min, max) {
+    return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr)) + this.minCustHr;
+  },
+
+  cookiesPerHour: function() {
+    for (var i = 0; i < hoursOfStore.length; i++) {
+      var cookiesPer = Math.floor(this.avgCookPerCust * this.customersPerHour());
+      this.hourlyCook.push(cookiesPer);
+    }
+  },
+
+  cookiesPerDay: function() {
+    var total = 0;
+    for (var i = 0; i < this.hourlyCook.length; i++) {
+      total += this.hourlyCook[i];
+    }
+    return total;
+  },
+  render: function() {
+    var alkiUl = document.getElementById('alki');
+    for(var i = 0; i < hoursOfStore.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = hoursOfStore[i] + ': ' + this.hourlyCook[i] + ' Cookies per hour';
+      alkiUl.appendChild(liEl);
+    }
+    var total = document.getElementById('alki');
+    var liEL = document.createElement('li');
+    liEL.textContent = 'total: ' + this.cookiesPerDay(total);
+    total.appendChild(liEL);
+  }
+};
+
+alki.customersPerHour();
+alki.cookiesPerHour();
+alki.render();
