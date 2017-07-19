@@ -38,12 +38,12 @@ function StoreLocation(storeName, minCustomersEachHour, maxCustomersEachHour, av
     trEl.appendChild(tdEl);
 
     for(var i = 0; i < storeHours.length; i++) {
-      var tdEl = document.createElement('td');
+      tdEl = document.createElement('td');
       tdEl.textContent = this.cookiesSoldEachHour[i];
       trEl.appendChild(tdEl);
     }
 
-    var tdEl = document.createElement('td');
+    tdEl = document.createElement('td');
     tdEl.textContent = this.totalCookiesPerDay;
     trEl.appendChild(tdEl);
     cookiesTable.appendChild(trEl);
@@ -67,12 +67,12 @@ function makeHeaderRow() {
   trEl.appendChild(thEl);
 
   for(var i = 0; i < storeHours.length; i++) {
-    var thEl = document.createElement('th');
+    thEl = document.createElement('th');
     thEl.textContent = storeHours[i];
     trEl.appendChild(thEl);
   }
 
-  var thEl = document.createElement('th');
+  thEl = document.createElement('th');
   thEl.textContent = 'Total';
   trEl.appendChild(thEl);
 
