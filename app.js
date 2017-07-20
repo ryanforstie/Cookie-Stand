@@ -3,6 +3,7 @@
 var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var myStores = [];
 var cookiesTable = document.getElementById('stores');
+var storeForm = document.getElementById('store-form');
 
 //Stores in Constructor notation
 function StoreLocation(storeName, minCustomersEachHour, maxCustomersEachHour, avgCookiesPerCustomers) {
@@ -89,6 +90,121 @@ makeHeaderRow();
 cookieRows();
 
 
+
+
+// 'use strict';
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Global variables for DOM access and such
+// var storeList = document.getElementById('store-list');
+// var storeForm = document.getElementById('store-form');
+// var clearStoreList = document.getElementById('clear-store-list');
+// var allComments = [];
+//
+// // +++++++++++++++++++++++++++++++++++++++++++++++++++++
+// // Here's the constructor for the individual comments
+// var StoreLocation = function(userName, text) {
+//   this.userName = userName;
+//   this.text = text;
+// };
+//
+// Comment.prototype.render = function() {
+//   var liEl = document.createElement('li');
+//   liEl.innerHTML = '<img width="100px" src="img/' + this.userName + '.jpg"> <b>' + this.userName + ': </b><em>' + this.text + '</em>';
+//   return liEl;
+// };
+
+
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++
+// FUNCTION DECLARATIONS
+
+// This function gots through the array of comments and calls the render() method on each one
+// function renderAllComments() {
+//   chatList.innerHTML = '';
+//
+//   for (var i = 0; i < allComments.length; i++) {
+//     chatList.appendChild(allComments[i].render());
+//   }
+//
+//   // These lines could be used to replace the 'for' loop above
+//   // allComments.forEach(function(unicorn) {
+//   //   chatList.appendChild(unicorn.render());
+//   // });
+//
+// };
+//
+// // This function is the event handler for the submission of comments
+// function handleCommentSubmit(event) {
+//   // console.log('log of the event object', event);
+//   // console.log('log of the event.target', event.target);
+//   // console.log('log of the event.target.says', event.target.says);
+//   console.log('log of the event.target.who.value', event.target.who.value);
+//
+//   event.preventDefault(); // gotta have it for this purpose. prevents page reload on a 'submit' event
+//
+// // Validation to prevent empty form fields
+//   if (!event.target.says.value || !event.target.who.value) {
+//     return alert('Fields cannot be empty!');
+//   }
+//
+//   var commenter = event.target.who.value;
+//   var remark = event.target.says.value;
+//
+//   if (commenter === 'Sam') {
+//     remark = '@$^#$%$^@#$%@';
+//   }
+//
+//   if (commenter === 'Kayla') {
+//     remark = remark.toUpperCase();
+//   }
+//
+//   if (commenter === 'Otis') {
+//     remark = '&#9835; Shama-lama-ding-dong &#9835;';
+//   }
+//
+//   var newComment = new Comment(commenter, remark);
+//
+//   // console.log('Comment by ' + event.target.who.value + ' at ' + Date());
+//
+//   event.target.who.value = null;
+//   event.target.says.value = null;
+//
+//   allComments.push(newComment);
+//   renderAllComments();
+// };
+//
+// // +++++++++++++++++++++++++++++++++++++++++++++++++++++
+// // Event listener for comment submission form
+// chatForm.addEventListener('submit', handleCommentSubmit);
+//
+// // +++++++++++++++++++++++++++++++++++++++++++++++++++++
+// // Event listener for the 'Clear all comments' button
+// clearChatList.addEventListener('click', function() {
+//   chatList.innerHTML = '';
+//   console.log('You just cleared the chat list!');
+//   allComments = [];
+// });
+
+
+function submitForm(event){
+ event.preventDefault();
+ var name = event.target.name.value;
+ var minCust = event.target.minCust.value;
+ var maxCust = event.target.maxCust.value;
+ var avgCook = event.target.avgCook.value;
+ if(name === '' || minCust === '' || maxCust === '' || avgCook === ''){
+   alert('Boxes need to have content!');
+   return;
+ }
+ new StoreLocation(name, minCust, maxCust, avgCook);
+ myStores[myStores.length - 1].render();
+}
+storeForm.addEventListener('submit', submitForm);
+
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++
+/* Here is where we would put everything else that we want to execute on page load. This is where you would usually find function calls, but since this app is all driven ansynchronously by user interaction, the first JS that will execute is waiting inside the event listeners. */
 
 
 

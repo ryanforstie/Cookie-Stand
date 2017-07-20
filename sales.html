@@ -8,24 +8,27 @@
   <body>
     <h1>Seattle's Best Salmon Cookie Store's</h1>
 
-
-    <form id="chat-form">
+    <form id="store-form">
     <fieldset>
-      <legend>Chat submission form</legend>
+      <legend>Add New Store</legend>
 
-      <label for="who">Who: </label>
-      <input name="who" type="text" />
+      <label for="name">Store Name:</label>
+      <input name="name" type="text" size="25" />
 
-      <label for="says">Comment: </label>
-      <input name="says" type="text" size="50" />
+      <label for="minCust">Minimum Customers/Hour:</label>
+      <input name="minCust" type="text" size="25" />
 
-      <button type="submit">Create new comment!</button>
+      <label for="maxCust">Maximum Customers/Hour</label>
+      <input name="maxCust" type="text" size="25" />
+
+      <label for="avgCook">Cookies Sold/Hour</label>
+      <input name="avgCook" type="text" size="25" />
+      <button type="submit">Add Store</button>
+
     </fieldset>
   </form>
 
-  <button id="clear-chat-list">Clear all comments!</button>
-
-  <ul id="chat-list"></ul>
+  <ul id="store-list"></ul>
 
 
     <table id = "stores"></table>
