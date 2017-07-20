@@ -88,8 +88,38 @@ function cookieRows(){
   }
 }
 
+// Footer Row
+function makeFooterRow() {
+  var total = 0;
+  var finalTotal = 0;
+  var trEl = document.createElement('tr');
+
+  var tdEl = document.createElement('td');
+  tdEl.textContent = 'Hourly Total';
+  trEl.appendChild(tdEl);
+
+  for(var i = 0; i < storeHours.length; i++) {
+    for(var j = 0; j < myStores.length; j++) {
+      total += myStores[j].cookiesSoldEachHour[i];
+    }
+    finalTotal += total;
+
+
+    tdEl = document.createElement('td');
+    tdEl.textContent = total;
+    trEl.appendChild(tdEl);
+    total = 0;
+  }
+  tdEl = document.createElement('td');
+  tdEl.textContent = finalTotal;
+  trEl.appendChild(tdEl);
+  cookiesTable.appendChild(trEl);
+};
+
 makeHeaderRow();
 cookieRows();
+makeFooterRow();
+
 
 // Add Store Form
 function submitForm(event){
