@@ -99,15 +99,13 @@ function submitForm(event){
   var maxCustomers = event.target.maxCustomers.value;
   var avgCookies = event.target.avgCookies.value;
   if(storeName === '' || minCustomers === '' || maxCustomers === '' || avgCookies === '') {
-    alert('All Fields need to have content!');
+    alert('All fields need to have content!');
     return;
   }
   new StoreLocation(storeName, minCustomers, maxCustomers, avgCookies);
   myStores[myStores.length - 1].render();
 }
 storeForm.addEventListener('submit', submitForm);
-
-
 
 
 
