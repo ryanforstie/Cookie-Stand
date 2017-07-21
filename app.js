@@ -104,16 +104,17 @@ function makeFooterRow() {
     }
     finalTotal += total;
 
-
     tdEl = document.createElement('td');
     tdEl.textContent = total;
     trEl.appendChild(tdEl);
     total = 0;
   }
+  cookiesTable.appendChild(trEl);
+
   tdEl = document.createElement('td');
   tdEl.textContent = finalTotal;
   trEl.appendChild(tdEl);
-  cookiesTable.appendChild(trEl);
+
 };
 
 makeHeaderRow();
@@ -134,6 +135,7 @@ function submitForm(event){
   }
   new StoreLocation(storeName, minCustomers, maxCustomers, avgCookies);
   myStores[myStores.length - 1].render();
+  storeForm.reset();
 }
 storeForm.addEventListener('submit', submitForm);
 
