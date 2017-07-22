@@ -82,6 +82,7 @@ function makeHeaderRow() {
   cookiesTable.appendChild(trEl);
 }
 
+//adds rows left/right top/bottom
 function cookieRows(){
   for(var i = 0; i < myStores.length; i++) {
     myStores[i].render();
@@ -93,12 +94,12 @@ function makeFooterRow() {
   var total = 0;
   var finalTotal = 0;
   var trEl = document.createElement('tr');
-
+  trEl.id = 'totalRow';
   var tdEl = document.createElement('td');
   tdEl.textContent = 'Hourly Total';
   trEl.appendChild(tdEl);
 
-  for(var i = 0; i < storeHours.length; i++) {
+  for(var i = 0; i < storeHours.length; i++) { //adds up each cell from top to bottom
     for(var j = 0; j < myStores.length; j++) {
       total += myStores[j].cookiesSoldEachHour[i];
     }
@@ -133,9 +134,14 @@ function submitForm(event){
     alert('All fields need to have content!');
     return;
   }
+  var totalRow = document.getElementById('totalRow');
+  cookiesTable.removeChild(totalRow); //removes totalRow
+
   new StoreLocation(storeName, minCustomers, maxCustomers, avgCookies);
-  myStores[myStores.length - 1].render();
-  storeForm.reset();
+  myStores[myStores.length - 1].render(); //adds totalRow
+
+  storeForm.reset(); //reset form after adding store
+  makeFooterRow();
 }
 storeForm.addEventListener('submit', submitForm);
 
